@@ -41,14 +41,6 @@ func openFile(fileName string) [][]int {
 }
 
 func main() {
-	// lines := [][]int{
-	// 	{7, 6, 4, 2, 1},
-	// 	{1, 2, 7, 8, 9},
-	// 	{9, 7, 6, 2, 1},
-	// 	{1, 3, 2, 4, 5},
-	// 	{8, 6, 4, 4, 1},
-	// 	{1, 3, 6, 7, 9},
-	// }
 	lines := openFile("output.txt")
 
 	ans := getSafe(lines)
@@ -117,44 +109,17 @@ func getSafeWithHelp(lines [][]int) int {
 	return safe
 }
 
-// func isLineSafeWithHelp(line []int) bool {
-// 	increasing := 0
-// 	decreasing := 0
-//
-// 	for i := 1; i < len(line); i++ {
-// 		diff := line[i] - line[i-1]
-//
-// 		// Check if diff exceeds the allowed range
-// 		if abs(diff) > 3 {
-// 			return false
-// 		}
-//
-// 		// Track increasing and decreasing trends
-// 		if diff > 0 {
-// 			increasing++
-// 		} else if diff < 0 {
-// 			decreasing++
-// 		}
-// 	}
-
-// Safe if it's predominantly increasing or decreasing, but not both
-// 	return !(increasing > 0 && decreasing > 0)
-// }
-
 func isSafeWithRemoval(line []int) bool {
-	// Check if it's already safe
 	if isLineSafe(line) {
 		return true
 	}
 
-	// Try removing each level and check for safety
 	for i := 0; i < len(line); i++ {
 		if isLineSafe(removeIdx(line, i)) {
 			return true
 		}
 	}
 
-	// Unsafe even after removing one level
 	return false
 }
 
